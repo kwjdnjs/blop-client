@@ -1,10 +1,10 @@
 import SearchBox from '@/components/searchBox';
 
-export default function Introduction() {
+export default function Home() {
 	return (
 		<>
 			<SearchBox />
-			<h1>this is an introduction page</h1>
+			Hello
 		</>
 	);
 }

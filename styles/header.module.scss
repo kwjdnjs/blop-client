@@ -1,6 +1,8 @@
+@import 'styles/_variables.scss';
+
 .container{
     position: fixed;
-	border-bottom: 1px solid rgb(238, 238, 238);
+	border-bottom: 1px solid $border-gray;
 	height: 59px;
 	width: 100%;
 }

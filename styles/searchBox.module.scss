@@ -1,7 +1,9 @@
+@import 'styles/_variables.scss';
+
 .container{
     display: flex;
 	height: 30px;
-	border: 1px solid rgb(238, 238, 238);
+	border: 1px solid $border-gray;
 }
 
 .search{
@@ -15,4 +17,8 @@
     height: 100%;
 	border: 0;
 	padding: 0px 6px 0px 6px;
+	transition: 0.1s;
+	&:active {
+		background-color: white;
+	}
 }
