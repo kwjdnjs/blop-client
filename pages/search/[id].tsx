@@ -3,14 +3,14 @@ import axios from 'axios';
 import Link from 'next/link';
 
 export default function SearchId(props) {
-  const URL = `/${props.data['type']}/${props.id}`
+  const URL = `/${props.data['idType']}/${props.id}`
   return (
     <>
       <SearchBox />
       <h3>{props.id}</h3>
-      {props.data['type']}
+      {props.data['idType']}
       {
-       props.data['type'] == 'unknown'
+       props.data['idType'] == 'unknown'
         ? <h2>no link</h2>
         : <Link href={URL}>상세보기</Link>
       }

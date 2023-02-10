@@ -4,7 +4,7 @@ export default function TxId(props) {
   return (
     <>
       <h3>{props.id}</h3>
-      {props.data['tx_index']}
+      {props.data['data']}
     </>
   );
 }
