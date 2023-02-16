@@ -1,8 +1,9 @@
 import axios from 'axios';
+import Link from 'next/link';
 
 export default function AddrId(props) {
   const txData = props.data['data']['tx_hashes'];
-  const txList = txData.map((tx, index) => (<li key={index}>{tx['tx_hash']}</li>))
+  const txList = txData.map((tx, index) => (<li key={index}><Link href={`/tx/${tx['tx_hash']}`}>{tx['tx_hash']}</Link></li>))
   return (
     <>
       <h3>{props.id}</h3>

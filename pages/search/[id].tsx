@@ -1,38 +1,25 @@
 import SearchBox from '@/components/searchBox';
-import axios from 'axios';
+import useFetch from '@/hooks/useFetch';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export default function SearchId(props) {
-  const URL = `/${props.data['idType']}/${props.id}`
+export default function SearchId() {
+  const router = useRouter();
+  const { id } = router.query;
+  const data = useFetch('type');
+  
+
+  const URL = `/${data['idType']}/${id}`
   return (
     <>
       <SearchBox />
-      <h3>{props.id}</h3>
-      {props.data['idType']}
+      <h3>{id}</h3>
+      {data['idType']}
       {
-       props.data['idType'] == 'unknown'
+       data['idType'] == 'unknown' || data['idType'] == null
         ? <h2>no link</h2>
         : <Link href={URL}>상세보기</Link>
       }
     </>
   );
-}
-
-export async function getServerSideProps({ params }) {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/btc/type/${params.id}`
-  const res = await axios.get(url).catch((error)=>{
-    console.log(error);
-  });
-
-  let data = null;
-
-  if(!res) data = 'server error'
-  else data = res.data;
-
-  return {
-    props: {
-      id: params.id,
-      data
-    }
-  };
 }
