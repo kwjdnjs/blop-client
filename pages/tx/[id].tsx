@@ -1,29 +1,13 @@
-import axios from 'axios';
+import useFetch from '@/hooks/useFetch';
 
-export default function TxId(props) {
+export default function TxId() {
+  const { id, data } = useFetch('tx');
+  const value = (data['data'] != null) ? data['data']['vin'][0]['value'] : null;
+
   return (
     <>
-      <h3>{props.id}</h3>
-      {props.data['data']['vin'][0]['value']}
+      <h3>{id}</h3>
+      {value}
     </>
   );
-}
-
-export async function getServerSideProps({ params }) {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/btc/tx/${params.id}`
-  const res = await axios.get(url).catch((error)=>{
-    console.log(error);
-  });
-
-  let data = null;
-
-  if(!res) data = 'server error'
-  else data = res.data;
-
-  return {
-    props: {
-      id: params.id,
-      data
-    }
-  };
 }

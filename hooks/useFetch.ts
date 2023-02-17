@@ -20,9 +20,9 @@ const router = useRouter();
     }
     
     fetchData();
-  }, [id, router.isReady]);
+  }, [fetchType, id, router.isReady]);
 
-  return data;
+  return { id, data };
 }
 
 export default useFetch

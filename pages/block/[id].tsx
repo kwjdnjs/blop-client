@@ -1,29 +1,12 @@
-import axios from 'axios';
+import useFetch from '@/hooks/useFetch';
 
-export default function BlockId(props) {
+export default function BlockId() {
+  const { id, data } = useFetch('block');
+
   return (
     <>
-      <h3>{props.id}</h3>
-      {props.data['height']}
+      <h3>{id}</h3>
+      {data['height']}
     </>
   );
-}
-
-export async function getServerSideProps({ params }) {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/btc/block/${params.id}`
-  const res = await axios.get(url).catch((error)=>{
-    console.log(error);
-  });
-
-  let data = null;
-
-  if(!res) data = 'server error'
-  else data = res.data;
-
-  return {
-    props: {
-      id: params.id,
-      data
-    }
-  };
 }
