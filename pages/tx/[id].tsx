@@ -1,8 +1,8 @@
-import useFetch from '@/hooks/useFetch';
+import { useRouterFetch } from '@/hooks/fetch';
 
 export default function TxId() {
-  const { id, data } = useFetch('tx');
-  const value = (data['data'] != null) ? data['data']['vin'][0]['value'] : null;
+  const { id, data } = useRouterFetch('tx');
+  const value = (data != null) ? data['data']['vin'][0]['value'] : null;
 
   return (
     <>

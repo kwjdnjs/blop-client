@@ -1,17 +1,16 @@
-import useFetch from '@/hooks/useFetch';
-import Link from 'next/link';
+import TxList from '@/components/addr/txList';
+import { useRouterFetch } from '@/hooks/fetch';
 
 export default function AddrId() {
-  const { id, data } = useFetch('addr');
+  const { id, data } = useRouterFetch('addr');
 
-  const txData = (data['data'] != null) ? data['data']['tx_hashes'] : null;
-  let txList = null;
-  if (txData)
-    txList = txData.map((tx, index) => (<li key={index}><Link href={`/tx/${tx['tx_hash']}`}>{tx['tx_hash']}</Link></li>));
+  const txData = data != null ? data['data']['tx_hashes'] : null;
+
   return (
     <>
       <h3>{id}</h3>
-      <ul>{txList}</ul>
+      {txData != null ? <TxList addr={id} txData={txData}/> : null}
+      
     </>
   );
 }

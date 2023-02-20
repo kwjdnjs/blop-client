@@ -1,9 +1,9 @@
 import SearchBox from '@/components/searchBox';
-import useFetch from '@/hooks/useFetch';
+import { useRouterFetch } from '@/hooks/fetch';
 import Link from 'next/link';
 
 export default function SearchId() {
-  const { id, data } = useFetch('type');
+  const { id, data } = useRouterFetch('type');
   
 
   const URL = `/${data['idType']}/${id}`

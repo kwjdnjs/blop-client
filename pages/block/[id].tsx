@@ -1,7 +1,7 @@
-import useFetch from '@/hooks/useFetch';
+import { useRouterFetch } from '@/hooks/fetch';
 
 export default function BlockId() {
-  const { id, data } = useFetch('block');
+  const { id, data } = useRouterFetch('block');
 
   return (
     <>
